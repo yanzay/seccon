@@ -68,6 +68,9 @@ func (c *client) dial(addr string) (net.Conn, error) {
 	}
 
 	ch, _, err := clientConn.OpenChannel("data", []byte{})
+	if err != nil {
+		return nil, err
+	}
 	return &secureConnection{conn: conn, channel: ch}, nil
 }
 
